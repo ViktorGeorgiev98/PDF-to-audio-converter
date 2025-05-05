@@ -1,4 +1,9 @@
 import tkinter as tk
+from tkinter import filedialog, messagebox
+
+# import fitz  # PyMuPDF
+from gtts import gTTS
+import os
 
 
 class Audio_Converter(tk.Tk):
@@ -41,16 +46,29 @@ class Audio_Converter(tk.Tk):
         self.choose_output_folder_button.pack(pady=10)
 
         self.convert_button = tk.Button(
-            self, text="Convert to Audio", command=self.convert_to_audio
+            self,
+            text="Convert to Audio",
+            command=self.convert_to_audio,
+            state="disabled",
         )
         self.convert_button.pack(pady=10)
 
     # methods
     def upload_pdf(self):
-        pass
+        self.pdf_file_path = filedialog.askopenfilename(
+            title="Select PDF File", filetypes=[("PDF Files", "*.pdf")]
+        )
+        if self.pdf_file_path:
+            self.check_ready()
 
     def choose_output_folder(self):
-        pass
+        self.output_file_path = filedialog.askdirectory(title="Select Output Folder")
+        if self.output_file_path:
+            self.check_ready()
 
     def convert_to_audio(self):
         pass
+
+    def check_ready(self):
+        if self.pdf_file_path and self.output_file_path:
+            self.convert_button.config(state="normal")
