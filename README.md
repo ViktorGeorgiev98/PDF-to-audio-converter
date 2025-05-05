@@ -34,3 +34,6 @@ A simple desktop application that converts text from PDF files into speech (MP3 
    git clone https://github.com/yourusername/pdf-to-audio-converter.git
    cd pdf-to-audio-converter
 
+2. **Installing dependencies**
+   Run command "pip install requirements.txt"
+
